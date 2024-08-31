@@ -1,0 +1,125 @@
+
+1. Write a python script to encrypt the string using Caesar cipher.
+plaintext="good morning "
+shift=3
+cipher_text=""
+for i in plaintext:
+                if i.isalpha():
+                                shift_amount = shift % 26
+           
+                                if i.islower():
+                              start = ord('a')
+                              encrypted_char = chr((ord(i) - start + shift_amount) % 26 + start)
+                                               
+                                elif i.isupper():
+                              start = ord('A')
+                              encrypted_char = chr((ord(i) - start + shift_amount) % 26 + start)
+                cipher_text+= encrypted_char
+print(cipher_text)
+2. Write a Python script to Modify the above script to shift cipher based on user choice. 
+plaintext=str(input("enter the cipher text"))
+shift=int(input("enter the shift"))
+cipher_text=""
+for i in plaintext:
+                if i.isalpha():
+                                shift_amount = shift % 26
+           
+                                if i.islower():
+                              start = ord('a')
+                              encrypted_char = chr((ord(i) - start + shift_amount) % 26 + start)
+                                               
+                                elif i.isupper():
+                              start = ord('A')
+                              encrypted_char = chr((ord(i) - start + shift_amount) % 26 + start)
+                cipher_text+= encrypted_char
+print(cipher_text)
+3. Write a Python script to convert cipher text into uppercase characters and split the cipher into group of 5 of characters.
+plaintext=str(input("enter the cipher text"))
+shift=int(input("enter the shift"))
+cipher_text=""
+for i in plaintext:
+                if i.isalpha():
+                                shift_amount = shift % 26
+           
+                                if i.islower():
+                              start = ord('a')
+                              encrypted_char = chr((ord(i) - start + shift_amount) % 26 + start)
+                                               
+                                elif i.isupper():
+                              start = ord('A')
+                              encrypted_char = chr((ord(i) - start + shift_amount) % 26 + start)
+                cipher_text+= encrypted_char
+a=cipher_text.upper()]
+print(a)
+
+4. Write a Python program to Find the histogram for each characters. 
+text = "hello good morning
+
+histogram = {}
+
+for char in text:
+    
+    if char in histogram:
+        	histogram[char] += 1
+    else:
+        
+        histogram[char] = 1
+
+for char, count in histogram.items():
+    print(f"'{char}': {count}")
+
+5. Write a Python script to read the contents from the file. 
+
+path = /Users/sid/Documents
+with open(path, 'r') as file:
+    content = file.read()
+    print(content)
+
+6. Write a Python script to encrypt the contents from the file. 
+
+
+
+
+7. Do validation to the python program (2) 
+   - not to accept special characters 
+   - not to accept numeric values 
+   - not to accept empty value 
+   - accept only string
+   - string should be lowercase if not convert the case 
+8. Write a Python program to checks if two given strings are anagrams of each other.
+def are_anagrams(str1, str2):
+  
+    str1 = str1.replace(" ", "").lower()
+    str2 = str2.replace(" ", "").lower()
+    
+  
+    return sorted(str1) == sorted(str2)
+
+
+string1 = "tone"
+string2 = "note"
+
+if are_anagrams(string1, string2):
+    print("are anagrams.")
+else:
+    print("are not anagrams")
+example: mug, gum
+         cork, rock
+         note, tone
+9. Write a Python program to check the given string is palindrome or not
+Do not use built in functions 
+
+text="madam"
+If text[0:]=text[-1:]
+	print("palindrome")
+Else:
+      print("not palindrome")
+Example: MADAM 
+         RACECAR
+         LEVEL
+         CIVIC
+                
+
+Programming is a skill best acquired by practice and example rather than from books   -- unknown 
+
+The only way to do great work is to love what you do   --Steve Jobs
