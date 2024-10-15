@@ -1,0 +1,70 @@
+
+1. Statistical attack on the ciphertext to find the plaintext:
+# A statistical attack can be performed by frequency analysis (counting the frequency of letters in the ciphertext and mapping them to the most common letters in the English language). This requires a manual approach or more complex coding for actual statistical analysis.
+
+2. Encrypt using Rail Fence (Zig Zag) with three rows and key (ONE):
+def rail_fence_encrypt(text, key):
+    key_sequence = [ord(k.upper()) - ord('A') + 1 for k in key]
+    rail = [['
+' for i in range(len(text))] for j in range(max(key_sequence))]
+    direction_down = False
+    row, col = 0, 0
+    for i in range(len(text)):
+        if row == 0 or row == max(key_sequence) - 1:
+            direction_down = not direction_down
+        rail[row][col] = text[i]
+        col += 1
+        row = row + 1 if direction_down else row - 1
+    result = []
+    for i in range(max(key_sequence)):
+        for j in range(len(text)):
+            if rail[i][j] != '
+':
+                result.append(rail[i][j])
+    return "".join(result)
+
+3. Encrypt using columnar transposition cipher:
+def columnar_transposition_encrypt(plain_text, key):
+    key_len = len(key)
+    sorted_key = sorted(key)
+    col_lengths = [(len(plain_text) + i) // key_len for i in range(key_len)]
+    columns = [''] * key_len
+    idx = 0
+    for i, length in enumerate(col_lengths):
+        columns[i] = plain_text[idx:idx + length]
+        idx += length
+    cipher = ''
+    for k in sorted_key:
+        cipher += ''.join([columns[key.index(k)][i] for i in range(len(columns[key.index(k)]))])
+    return cipher
+
+4. Decrypt Rail Fence cipher:
+def rail_fence_decrypt(cipher, key):
+    key_sequence = [ord(k.upper()) - ord('A') + 1 for k in key]
+    rail = [['
+' for i in range(len(cipher))] for j in range(max(key_sequence))]
+    direction_down = None
+    row, col = 0, 0
+    for i in range(len(cipher)):
+        if row == 0 or row == max(key_sequence) - 1:
+            direction_down = not direction_down
+        rail[row][col] = '*'
+        col += 1
+        row = row + 1 if direction_down else row - 1
+    index = 0
+    for i in range(max(key_sequence)):
+        for j in range(len(cipher)):
+            if rail[i][j] == '*' and index < len(cipher):
+                rail[i][j] = cipher[index]
+                index += 1
+    result = []
+    row, col = 0, 0
+    for i in range(len(cipher)):
+        if row == 0 or row == max(key_sequence) - 1:
+            direction_down = not direction_down
+        if rail[row][col] != '
+':
+            result.append(rail[row][col])
+            col += 1
+        row = row + 1 if direction_down else row - 1
+    return "".join(result)
