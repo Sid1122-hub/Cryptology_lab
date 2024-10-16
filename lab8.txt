@@ -1,0 +1,50 @@
+1. Python Script for XOR Operation
+
+```python
+def get_binary_input(prompt):
+    while True:
+        binary_input = input(prompt)
+        if all(bit in '01' for bit in binary_input):
+            return binary_input
+        print("Please enter a valid binary number.")
+
+binary1 = get_binary_input("Enter the first binary number: ")
+binary2 = get_binary_input("Enter the second binary number: ")
+
+max_length = max(len(binary1), len(binary2))
+binary1 = binary1.zfill(max_length)
+binary2 = binary2.zfill(max_length)
+
+xor_result = ''.join('1' if b1 != b2 else '0' for b1, b2 in zip(binary1, binary2))
+print(f"XOR Result: {xor_result}")
+
+
+2.
+def lfsr(initial_state, taps, steps):
+    state = initial_state
+    for _ in range(steps):
+        print(f"Current State: {state}")
+        feedback = sum(int(state[i]) for i in taps) % 2
+        state = str(feedback) + state[:-1]
+
+initial_state = input("Enter the initial state (4 bits): ")
+taps = list(map(int, input("Enter the tap positions (comma-separated): ").split(',')))
+steps = 10
+
+lfsr(initial_state, taps, steps)
+
+
+
+3.
+def lfsr(initial_state, taps, steps):
+    state = initial_state
+    for _ in range(steps):
+        print(f"Current State: {state}")
+        feedback = sum(int(state[i]) for i in taps) % 2
+        state = str(feedback) + state[:-1]
+
+initial_state = input("Enter the initial state (4 bits): ")
+taps = list(map(int, input("Enter the tap positions (comma-separated): ").split(',')))
+steps = 10
+
+lfsr(initial_state, taps, steps)
